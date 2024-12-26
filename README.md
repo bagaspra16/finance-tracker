@@ -17,11 +17,11 @@ These instructions will help you set up the project locally for development and 
 
 ### Prerequisites
 
-- PHP >= 8.1
+- PHP >= 8.2.27
 - Composer
 - Node.js & npm
-- MySQL or any database supported by Laravel
-- A web server (e.g., XAMPP, WAMP, Laravel Valet)
+- PostgreSql or any database supported by Laravel
+- A web server (e.g., XAMPP, WAMP, Dbeaver)
 
 ---
 
@@ -31,13 +31,13 @@ These instructions will help you set up the project locally for development and 
 
    Clone the repository from GitHub:
    ```bash
-   git clone https://github.com/username/finance-tracker-app.git
+   https://github.com/bagaspra16/finance-tracker.git
 
 
 2. Navigate into the project directory:
 
     ```bash
-    cd project-name
+    cd finance-tracker
 
 3. Install Composer dependencies:
 
@@ -69,6 +69,6 @@ These instructions will help you set up the project locally for development and 
 ```bash
 php artisan serve
 ```
-### Login Information!
+### Login & Database Information!
 
-Find the email & password login in database & seeders folder.
+Ask the Creator for the overall database structure!!!
