@@ -31,7 +31,7 @@ These instructions will help you set up the project locally for development and 
 
    Clone the repository from GitHub:
    ```bash
-   https://github.com/bagaspra16/finance-tracker.git
+   git clone https://github.com/bagaspra16/finance-tracker.git
 
 
 2. Navigate into the project directory:
@@ -58,11 +58,6 @@ These instructions will help you set up the project locally for development and 
 
    ```bash
    php artisan migrate
-
-7. Install npm dependencies and compile assets:
-
-   ```bash
-   npm install && npm run dev
 
 ### Running Project
 
