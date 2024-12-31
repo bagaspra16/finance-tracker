@@ -32,7 +32,7 @@ class EditTransaksiPengeluaran extends EditRecord
             $record->fill([
                 'tanggal_pengeluaran' => $data['tanggal_pengeluaran'],
                 'jam_pengeluaran' => $data['jam_pengeluaran'],
-                'jam_pengeluaran' => $data['id_rencana_kebutuhan'],
+                'id_rencana_kebutuhan' => $data['id_rencana_kebutuhan'],
                 'balance_pengeluaran' => $data['balance_pengeluaran'],
                 'id_kategori_pengeluaran' => $data['id_kategori_pengeluaran'],
                 'id_jenis_penyimpanan' => $data['id_jenis_penyimpanan'],

@@ -66,9 +66,11 @@ class BarChart extends ChartWidget
             ->map(function($group) {
                 $income = $group->where('transaksi', 'PEMASUKKAN')->sum('balance');
                 $expense = $group->where('transaksi', 'PENGELUARAN')->sum('balance');
+                $codes = $group->pluck('kode')->toArray();
                 return [
                     'income' => $income,
-                    'expense' => $expense
+                    'expense' => $expense,
+                    'codes' => $codes
                 ];
             });
 
@@ -99,6 +101,9 @@ class BarChart extends ChartWidget
                 ],
             ],
             'labels' => collect($days)->map(fn($day) => "$day")->toArray(),
+            'codes' => collect($days)->map(fn($day) => 
+                implode(', ', $data->get($day < 10 ? "0$day" : "$day")['codes'] ?? [])
+            )->toArray(),
             'maxValue' => $maxValue * 1.5,
         ];
     }
@@ -140,12 +145,12 @@ class BarChart extends ChartWidget
                         }',
                         'label' => 'function(context) {
                             let value = context.raw;
-                            return context.dataset.label + ": " + 
-                            new Intl.NumberFormat("id-ID", {
+                            let code = context.chart.config._config.data.codes[context.dataIndex];
+                            return `${context.dataset.label}: ${new Intl.NumberFormat("id-ID", {
                                 style: "currency",
                                 currency: "IDR",
                                 maximumFractionDigits: 0
-                            }).format(value);
+                            }).format(value)} (Kode: ${code})`;
                         }',
                     ],
                 ],

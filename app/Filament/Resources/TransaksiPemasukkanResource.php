@@ -110,7 +110,8 @@ class TransaksiPemasukkanResource extends Resource
                     ->label('Jam')
                     ->time('H:i'),                
                 Tables\Columns\TextColumn::make('balance_pemasukkan')
-                    ->label('Balance'),
+                    ->label('Balance')
+                    ->formatStateUsing(fn ($state) => number_format($state)), 
                 Tables\Columns\TextColumn::make('kategoriPemasukkan.nama')
                     ->label('Kategori'),
                 Tables\Columns\TextColumn::make('jenisPenyimpanan.nama')
