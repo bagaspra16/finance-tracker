@@ -5,7 +5,7 @@ namespace App\Filament\Pages;
 use Filament\Pages\Dashboard as BaseDashboard;
 use App\Filament\Widgets\StatsOverview;
 use App\Filament\Widgets\DonutChart;
-use App\Filament\Widgets\PieChart;
+use App\Filament\Widgets\RadarChart;
 use App\Filament\Widgets\BarChart;
 
 class Dashboard extends BaseDashboard
@@ -16,7 +16,7 @@ class Dashboard extends BaseDashboard
         return [
             StatsOverview::class,
             DonutChart::class,
-            PieChart::class,
+            RadarChart::class,
             BarChart::class,
 
         ];
