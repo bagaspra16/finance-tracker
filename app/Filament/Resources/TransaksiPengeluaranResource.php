@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TransaksiPengeluaranExport;
 
 
 class TransaksiPengeluaranResource extends Resource
@@ -124,7 +126,8 @@ class TransaksiPengeluaranResource extends Resource
                 
                 Tables\Columns\TextColumn::make('tanggal_pengeluaran')
                     ->label('Tanggal')
-                    ->date(),
+                    ->date()
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('jam_pengeluaran')
                     ->label('Jam')
@@ -132,7 +135,8 @@ class TransaksiPengeluaranResource extends Resource
 
                 Tables\Columns\TextColumn::make('balance_pengeluaran')
                     ->label('Balance')
-                    ->formatStateUsing(fn ($state) => number_format($state)), 
+                    ->formatStateUsing(fn ($state) => number_format($state))
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('kategoriPengeluaran.nama')
                     ->label('Kategori'),
@@ -162,6 +166,27 @@ class TransaksiPengeluaranResource extends Resource
                             $query->whereDate('tanggal_pengeluaran', '<=', $data['end_date']);
                         }
                     }),
+            ])
+            ->headerActions([
+                Tables\Actions\Action::make('Export to Excel')
+                    ->action(function ($action) {
+                        // Get the table filters
+                        $table = $action->getTable();
+                        $filters = $table->getFilters();
+                        
+                        // Get filter values
+                        $filterData = [];
+                        foreach ($filters as $filter) {
+                            $filterData[$filter->getName()] = $filter->getState();
+                        }
+                        
+                        return Excel::download(
+                            new TransaksiPengeluaranExport($filterData),
+                            'Laporan Pengeluaran - ' . now()->format('d-m-Y') . '.xlsx'
+                        );
+                    })
+                    ->color('success')
+                    ->icon('heroicon-o-document'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
