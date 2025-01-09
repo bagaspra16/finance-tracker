@@ -119,9 +119,11 @@ class TransaksiPemasukkanResource extends Resource
                     ->formatStateUsing(fn ($state) => number_format($state))
                     ->sortable(), 
                 Tables\Columns\TextColumn::make('kategoriPemasukkan.nama')
-                    ->label('Kategori'),
+                    ->label('Kategori')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('jenisPenyimpanan.nama')
-                    ->label('Penyimpanan'),
+                    ->label('Penyimpanan')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_by')
                     ->label('Dibuat Oleh')
                     ->searchable(),
@@ -162,7 +164,12 @@ class TransaksiPemasukkanResource extends Resource
                         );
                     })
                     ->color('success')
-                    ->icon('heroicon-o-document'),
+                    ->icon('heroicon-o-document')
+                    ->requiresConfirmation() 
+                    ->modalHeading('Export Data Pemasukkan') 
+                    ->modalDescription('Apakah anda yakin ingin mengexport data?') 
+                    ->modalSubmitActionLabel('Ya, Export') 
+                    ->modalCancelActionLabel('Batal'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

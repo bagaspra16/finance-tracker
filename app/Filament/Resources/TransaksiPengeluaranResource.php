@@ -139,10 +139,12 @@ class TransaksiPengeluaranResource extends Resource
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('kategoriPengeluaran.nama')
-                    ->label('Kategori'),
+                    ->label('Kategori')
+                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('jenisPenyimpanan.nama')
-                    ->label('Penyimpanan'),
+                    ->label('Penyimpanan')
+                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('created_by')
                     ->label('Dibuat Oleh')
@@ -186,7 +188,12 @@ class TransaksiPengeluaranResource extends Resource
                         );
                     })
                     ->color('success')
-                    ->icon('heroicon-o-document'),
+                    ->icon('heroicon-o-document')
+                    ->requiresConfirmation() 
+                    ->modalHeading('Export Data Pengeluaran') 
+                    ->modalDescription('Apakah anda yakin ingin mengexport data?') 
+                    ->modalSubmitActionLabel('Ya, Export') 
+                    ->modalCancelActionLabel('Batal'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
