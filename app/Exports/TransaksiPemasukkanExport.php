@@ -159,7 +159,7 @@ class TransaksiPemasukkanExport implements WithCustomStartCell, FromQuery, WithH
                 // Number formatting for balance column
                 $sheet->getStyle("E{$startRow}:E{$highestRow}")
                     ->getNumberFormat()
-                    ->setFormatCode('#,##0');
+                    ->setFormatCode('#,##');
 
                 // Add borders
                 $sheet->getStyle("A5:{$lastColumn}{$highestRow}")->applyFromArray([
