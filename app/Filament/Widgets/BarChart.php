@@ -12,7 +12,7 @@ class BarChart extends ChartWidget
     protected int | string | array $columnSpan = 'full';
     public ?string $filter = null;
 
-    protected static ?int $sort = 4;
+    protected static ?int $sort = 6;
 
     public function mount(): void
     {
